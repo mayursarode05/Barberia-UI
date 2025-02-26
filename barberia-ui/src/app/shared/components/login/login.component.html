@@ -1,0 +1,45 @@
+<div class="bg-img">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-6">
+                <div class=" border bg-dark p-5 mt-5">
+                    <h2 class="text-white">Login</h2>
+                    <form class="form-group" [formGroup]="loginForm" (ngSubmit)="handleLogin()">
+                        <div>
+                            <label for="email">Email</label>
+                            <input type="email" formControlName="email" class="form-control" id="email" placeholder="Enter email">
+                            <!-- Display Errors using @if -->
+                            @if (loginForm.controls['email'].touched && loginForm.controls['email'].invalid) {
+                            <div class="text-danger">
+                                @if (loginForm.controls['email'].errors?.['required']) {
+                                <span>Email is required</span>
+                                }
+                                @if (loginForm.controls['email'].errors?.['email']) {
+                                <span>Invalid email format</span>
+                                }
+                            </div>
+                            }
+                        </div>
+                        <div>
+                            <label for="email">Password</label>
+                            <input type="password" formControlName="password" class="form-control" id="password" placeholder="Enter password">
+                            @if (loginForm.controls['password'].touched && loginForm.controls['password'].invalid) {
+                            <div class="text-danger">
+                                @if (loginForm.controls['password'].errors?.['required']) {
+                                <span>Password is required</span>
+                                }
+                                @if (loginForm.controls['password'].errors?.['minlength']) {
+                                <span>Password must be at least 6 characters</span>
+                                }
+                            </div>
+                            }
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
